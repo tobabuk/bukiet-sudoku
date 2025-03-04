@@ -31,10 +31,6 @@ public class Sudoku {
     public int[][] getBoard() {
         return board;
     }
-//checking a 9x9 board filled in of sudoku
-    //check that the row is correct
-    //check that the box is correct
-    // check that the collum is correct
 
     public List<String> getErrors() {
         List<String> stringList = new ArrayList<>();
