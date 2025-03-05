@@ -42,7 +42,7 @@ public class Sudoku {
 
     //check that the row is correct
 
-    public List<String> checkRow() {
+    private List<String> checkRow() {
         List<String> stringList = new ArrayList<>();
         for (int row = 0; row < 9; row++) {
             boolean[] checked = new boolean[10];
@@ -63,7 +63,7 @@ public class Sudoku {
     }
 
 
-    public List<String> checkCol() {
+    private List<String> checkCol() {
         List<String> stringList = new ArrayList<>();
         // check that the colum is correct
         for (int col = 0; col < 9; col++) {
@@ -83,7 +83,7 @@ public class Sudoku {
     }
 
 
-    public List<String> checkBox() {
+    private List<String> checkBox() {
         List<String> stringList = new ArrayList<>();
         for (int boxrow = 0; boxrow < 9; boxrow += 3) {
 
@@ -110,7 +110,6 @@ public class Sudoku {
         }
         return stringList;
     }
-
 }
 
 
