@@ -2,6 +2,9 @@ package bukiet.sudoku;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,18 +44,27 @@ class SudokuTest {
 
         Sudoku su = new Sudoku(falseBoard);
         List<String> results = su.getErrors();
-        System.out.println(results);
+        List<String> rowErrors = List.of(
+                "30 is not a valid number",
+                "There is a duplicate number 7 in row 2",
+                "There is a duplicate number 3 in row 6",
+                "There is a duplicate number 2 in row 7"
+        );
+        assertEquals(rowErrors, su.checkRow());
 
-        assertFalse(results.isEmpty());
-        assertTrue(results.contains("There is a duplicate number 7 in row 2"),
-                "Expected duplicate error for 7 in row 2");
+        List<String> colErrors = List.of("There is a duplicate number 3 in column 0",
+                "30 is not a valid number", "There is a duplicate number 7 in column 5",
+                "There is a duplicate number 2 in column 6");
 
-        assertTrue(results.contains("There is a duplicate number 3 in column 0"),
-                "Expected duplicate error for 3 in column 0");
-        assertTrue(results.contains("There is a duplicate number 2 at row 6 column 6"),
-                "Expected duplicate error for 2 at row 6 column 6");
+        assertEquals(colErrors, su.checkCol());
+        List<String> boxErrors = List.of("30 is not a valid number",
+                "There is a duplicate number 7 at row 2 column 5",
+                "There is a duplicate number 3 at row 6 column 1",
+                "There is a duplicate number 2 at row 7 column 6");
 
-        assertTrue(results.contains("30 is not a valid number"), "Expected a valid number");
+
+        assertEquals(boxErrors, su.checkBox());
+
 
     }
 

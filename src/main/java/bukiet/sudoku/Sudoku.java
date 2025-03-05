@@ -85,14 +85,15 @@ public class Sudoku {
 
     public List<String> checkBox() {
         List<String> stringList = new ArrayList<>();
-        for (int row = 0; row < 9; row += 3) {
+        for (int boxrow = 0; boxrow < 9; boxrow += 3) {
 
-            for (int col = 0; col < 9; col += 3) {
+            for (int boxcol = 0; boxcol < 9; boxcol += 3) {
                 boolean[] checked = new boolean[10];
-                for (int i = row; i < row + 3; i++) {
-                    for (int j = col; j < col + 3; j++) {
-
-                        int num = board[i][j];
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        int row = boxrow + i;
+                        int col = boxcol + j;
+                        int num = board[row][col];
                         if (num < 1 || num > 9) {
                             stringList.add(String.format("%d is not a valid number", num));
                         } else if (checked[num]) {
