@@ -34,8 +34,16 @@ public class Sudoku {
 
     public List<String> getErrors() {
         List<String> stringList = new ArrayList<>();
+        stringList.addAll(checkRow());
+        stringList.addAll(checkCol());
+        stringList.addAll(checkBox());
+        return stringList;
+    }
 
-        //check that the row is correct
+    //check that the row is correct
+
+    public List<String> checkRow() {
+        List<String> stringList = new ArrayList<>();
         for (int row = 0; row < 9; row++) {
             boolean[] checked = new boolean[10];
             for (int col = 0; col < 9; col++) {
@@ -48,9 +56,15 @@ public class Sudoku {
                     checked[num] = true;
                 }
             }
-
         }
-        // check that the collum is correct
+        return stringList;
+
+    }
+
+
+    public List<String> checkCol() {
+        List<String> stringList = new ArrayList<>();
+        // check that the colum is correct
         for (int col = 0; col < 9; col++) {
             boolean[] checked = new boolean[10];
             for (int row = 0; row < 9; row++) {
@@ -58,14 +72,18 @@ public class Sudoku {
                 if (num < 1 || num > 9) {
                     stringList.add(String.format("%d is not a valid number", num));
                 } else if (checked[num]) {
-                    stringList.add(String.format("There is a duplicate number %d in collum %d", num, col));
+                    stringList.add(String.format("There is a duplicate number %d in column %d", num, col));
                 } else {
                     checked[num] = true;
                 }
             }
-
         }
+        return stringList;
+    }
 
+
+    public List<String> checkBox() {
+        List<String> stringList = new ArrayList<>();
         for (int row = 0; row < 9; row += 3) {
 
             for (int col = 0; col < 9; col += 3) {
@@ -77,7 +95,7 @@ public class Sudoku {
                         if (num < 1 || num > 9) {
                             stringList.add(String.format("%d is not a valid number", num));
                         } else if (checked[num]) {
-                            stringList.add(String.format("There is a duplicate number %d in box %d", num, board[i][j]));
+                            stringList.add(String.format("There is a duplicate number %d at row %d column %d", num, row, col));
                         } else {
                             checked[num] = true;
                         }
@@ -90,8 +108,8 @@ public class Sudoku {
         return stringList;
     }
 
-
 }
+
 
 
 
