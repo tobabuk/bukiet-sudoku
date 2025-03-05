@@ -96,8 +96,8 @@ public class Sudoku {
                         if (num < 1 || num > 9) {
                             stringList.add(String.format("%d is not a valid number", num));
                         } else if (checked[num]) {
-                            stringList.add(String.format
-                                    ("There is a duplicate number %d at row %d column %d", num, row, col));
+                            stringList.add(String.format(
+                                    "There is a duplicate number %d at row %d column %d", num, row, col));
                         } else {
                             checked[num] = true;
                         }
