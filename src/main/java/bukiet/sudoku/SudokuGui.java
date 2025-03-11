@@ -92,8 +92,8 @@ public class SudokuGui extends JFrame {
             for (int row = 0; row < 9; row++) {
                 for (int col = 0; col < 9; col++) {
 
-                    if (error.contains("row " + row) || error.contains("column " + col) ||
-                            error.contains("row " + row + " column " + col)) {
+                    if (error.contains("row " + row) || error.contains("column " + col)
+                            || error.contains("row " + row + " column " + col)) {
                         cells[row][col].setBackground(Color.PINK);
                     } else if (error.contains("not a valid number")) {
                         String[] parts = error.split(" ");
