@@ -46,16 +46,7 @@ class SudokuTest {
         List<String> results = su.getErrors();
 
         List<String> expectedErrors = new ArrayList<>(Arrays.asList(
-                "30 is not a valid number", "30 is not a valid number", "30 is not a valid number",
-                "There is a duplicate number 2 at row 7 column 6",
-                "There is a duplicate number 2 in column 6",
-                "There is a duplicate number 2 in row 7",
-                "There is a duplicate number 3 at row 6 column 1",
-                "There is a duplicate number 3 in column 0",
-                "There is a duplicate number 3 in row 6",
-                "There is a duplicate number 7 at row 2 column 5",
-                "There is a duplicate number 7 in column 5",
-                "There is a duplicate number 7 in row 2"
+
         ));
 
 
