@@ -89,23 +89,23 @@ public class SudokuGui extends JFrame {
         }
 
         for (String error : errors) {
-            for (int row = 0; row < 9; row++) {
-                for (int col = 0; col < 9; col++) {
+            if (error.contains("Invalid number 0")) {
+                continue;
+            }
+            String[] parts = error.split(" ");
+            int num = Integer.parseInt(parts[2]);
+            int row = Integer.parseInt(parts[5]);
+            int col = Integer.parseInt(parts[7]);
 
-                    if (error.contains("row " + row) || error.contains("column " + col)
-                            || error.contains("row " + row + " column " + col)) {
-                        cells[row][col].setBackground(Color.PINK);
-                    } else if (error.contains("not a valid number")) {
-                        String[] parts = error.split(" ");
-                        int invalidNum = Integer.parseInt(parts[0]);
-                        if (String.valueOf(invalidNum).equals(cells[row][col].getText())) {
-                            cells[row][col].setBackground(Color.RED);
-                        }
-                    }
-                }
+            // Highlight cells based on error type
+            if (error.contains("Invalid number")) {
+                cells[row][col].setBackground(Color.RED);
+            } else if (error.contains("Duplicate number")) {
+                cells[row][col].setBackground(Color.PINK);
             }
         }
     }
+
 
     public static void main(String[] args) {
         {
