@@ -4,14 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Arrays;
 import java.util.List;
 
-public class SudokuGUI extends JFrame {
+public class SudokuGui extends JFrame {
     private Sudoku sud;
     private JTextField[][] cells = new JTextField[9][9];
 
-    public SudokuGUI() {
+    public SudokuGui() {
         int[][] emptyBoard = {{5, 3, 0, 0, 7, 0, 0, 0, 0},
                 {6, 0, 0, 1, 9, 5, 0, 0, 0},
                 {0, 9, 8, 0, 0, 0, 0, 6, 0},
@@ -56,7 +55,8 @@ public class SudokuGUI extends JFrame {
     }
 
     private class SudokuKeyListener extends KeyAdapter {
-        private int row, col;
+        private int row;
+        private int col;
         private JTextField cell;
 
         public SudokuKeyListener(int row, int col, JTextField cell) {
@@ -92,7 +92,8 @@ public class SudokuGUI extends JFrame {
             for (int row = 0; row < 9; row++) {
                 for (int col = 0; col < 9; col++) {
 
-                    if (error.contains("row " + row) || error.contains("column " + col) || error.contains("row " + row + " column " + col)) {
+                    if (error.contains("row " + row) || error.contains("column " + col) ||
+                            error.contains("row " + row + " column " + col)) {
                         cells[row][col].setBackground(Color.PINK);
                     } else if (error.contains("not a valid number")) {
                         String[] parts = error.split(" ");
@@ -108,7 +109,7 @@ public class SudokuGUI extends JFrame {
 
     public static void main(String[] args) {
         {
-            SudokuGUI frame = new SudokuGUI();
+            SudokuGui frame = new SudokuGui();
             frame.setVisible(true);
         }
     }
