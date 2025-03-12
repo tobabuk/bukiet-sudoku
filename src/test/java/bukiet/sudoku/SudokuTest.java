@@ -24,7 +24,9 @@ class SudokuTest {
                 {5, 2, 8, 6, 3, 9, 4, 1, 7}};
 
         Sudoku su = new Sudoku(trueBoard);
-        List<String> results = su.getErrors();
+        List<Object[]> results = su.getErrors();
+
+
         assertTrue(results.isEmpty());
 
 
@@ -42,18 +44,29 @@ class SudokuTest {
                 {9, 7, 4, 2, 1, 5, 2, 3, 8},
                 {5, 2, 8, 6, 3, 9, 4, 1, 7}};
 
+
         Sudoku su = new Sudoku(falseBoard);
-        List<String> results = su.getErrors();
+        List<Object[]> results = su.getErrors();
 
+        List<String> actualErrors = new ArrayList<>();
+        for (Object[] error : results) {
+            actualErrors.add((String) error[0]);
+        }
         List<String> expectedErrors = new ArrayList<>(Arrays.asList(
-
+                "Duplicate number", "Duplicate number",
+                "Duplicate number", "Duplicate number", "Duplicate number",
+                "Duplicate number", "Duplicate number", "Duplicate number",
+                "Duplicate number", "Invalid number"
+                , "Invalid number", "Invalid number"
         ));
 
 
-        Collections.sort(results);
+        Collections.sort(actualErrors);
+
+
         Collections.sort(expectedErrors);
 
-        assertEquals(expectedErrors, results);
+        assertEquals(expectedErrors, actualErrors);
 
     }
 

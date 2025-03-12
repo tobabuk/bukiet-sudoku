@@ -81,31 +81,29 @@ public class SudokuGui extends JFrame {
 
 
     private void sudokuErrors() {
-        List<String> errors = sud.getErrors();
+        List<Object[]> errors = sud.getErrors();
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
+
                 cells[row][col].setBackground(Color.WHITE);
             }
+
         }
 
-        for (String error : errors) {
-            if (error.contains("Invalid number 0")) {
-                continue;
-            }
-            String[] parts = error.split(" ");
-            int num = Integer.parseInt(parts[2]);
-            int row = Integer.parseInt(parts[5]);
-            int col = Integer.parseInt(parts[7]);
+        for (Object[] error : errors) {
+            String errorType = (String) error[0];
+            int row = (int) error[1];
+            int col = (int) error[2];
 
-            // Highlight cells based on error type
-            if (error.contains("Invalid number")) {
+            if (errorType.equals("Invalid number")) {
                 cells[row][col].setBackground(Color.RED);
-            } else if (error.contains("Duplicate number")) {
+            } else if (errorType.equals("Duplicate number")) {
                 cells[row][col].setBackground(Color.PINK);
             }
         }
-    }
 
+
+    }
 
     public static void main(String[] args) {
         {
