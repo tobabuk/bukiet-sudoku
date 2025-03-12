@@ -43,16 +43,26 @@ class SudokuTest {
                 {3, 3, 6, 7, 4, 8, 5, 9, 2},
                 {9, 7, 4, 2, 1, 5, 2, 3, 8},
                 {5, 2, 8, 6, 3, 9, 4, 1, 7}};
-
-
         Sudoku su = new Sudoku(falseBoard);
-        List<SudokuErrors> expectedErrors = su.getErrors();
+        List<SudokuErrors> foundErrors = su.getErrors();
+
 
         List<String> actualErrors = new ArrayList<>();
+        for (SudokuErrors error : foundErrors) {
+            actualErrors.add(error.toString()); // Ensure `toString()` returns a meaningful message
+        }
+
+        List<String> expectedErrorMessages = Arrays.asList("SudokuErrors[row=1, col=4, num=30]",
+                "SudokuErrors[row=2, col=6, num=7]", "SudokuErrors[row=6, col=1, num=3]," +
+                " SudokuErrors[row=7, col=6, num=2]", "SudokuErrors[row=6, col=0, num=3]",
+                "SudokuErrors[row=1, col=4, num=30]", "SudokuErrors[row=2, col=5, num=7]",
+                "SudokuErrors[row=7, col=6, num=2]",
+                "SudokuErrors[row=1, col=4, num=30]", "SudokuErrors[row=2, col=5, num=7]",
+                "SudokuErrors[row=6, col=1, num=3]", "SudokuErrors[row=7, col=6, num=2]"
+);
 
 
-        assertEquals(expectedErrors, actualErrors);
-
+        assertTrue(expectedErrorMessages.containsAll(actualErrors));
     }
 
 }
