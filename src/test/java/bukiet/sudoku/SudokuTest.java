@@ -24,7 +24,9 @@ class SudokuTest {
                 {5, 2, 8, 6, 3, 9, 4, 1, 7}};
 
         Sudoku su = new Sudoku(trueBoard);
-        List<String> results = su.getErrors();
+        List<SudokuErrors> results = su.getErrors();
+
+
         assertTrue(results.isEmpty());
 
 
@@ -42,27 +44,28 @@ class SudokuTest {
                 {9, 7, 4, 2, 1, 5, 2, 3, 8},
                 {5, 2, 8, 6, 3, 9, 4, 1, 7}};
 
-        Sudoku su = new Sudoku(falseBoard);
-        List<String> results = su.getErrors();
 
+        Sudoku su = new Sudoku(falseBoard);
+        List<SudokuErrors> results = su.getErrors();
+
+        List<String> actualErrors = new ArrayList<>();
+        for (SudokuErrors error : results) {
+            actualErrors.add(error.getErrorType());
+        }
         List<String> expectedErrors = new ArrayList<>(Arrays.asList(
-                "30 is not a valid number", "30 is not a valid number", "30 is not a valid number",
-                "There is a duplicate number 2 at row 7 column 6",
-                "There is a duplicate number 2 in column 6",
-                "There is a duplicate number 2 in row 7",
-                "There is a duplicate number 3 at row 6 column 1",
-                "There is a duplicate number 3 in column 0",
-               "There is a duplicate number 3 in row 6",
-               "There is a duplicate number 7 at row 2 column 5",
-                "There is a duplicate number 7 in column 5",
-                "There is a duplicate number 7 in row 2"
+                "Duplicate number", "Duplicate number",
+                "Duplicate number", "Duplicate number", "Duplicate number",
+                "Duplicate number", "Duplicate number", "Duplicate number",
+                "Duplicate number", "Invalid number", "Invalid number", "Invalid number"
         ));
 
 
-        Collections.sort(results);
+        Collections.sort(actualErrors);
+
+
         Collections.sort(expectedErrors);
 
-        assertEquals(expectedErrors, results);
+        assertEquals(expectedErrors, actualErrors);
 
     }
 
