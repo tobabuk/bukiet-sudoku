@@ -56,8 +56,7 @@ class SudokuTest {
                 "Duplicate number", "Duplicate number",
                 "Duplicate number", "Duplicate number", "Duplicate number",
                 "Duplicate number", "Duplicate number", "Duplicate number",
-                "Duplicate number", "Invalid number"
-                , "Invalid number", "Invalid number"
+                "Duplicate number", "Invalid number", "Invalid number", "Invalid number"
         ));
 
 
