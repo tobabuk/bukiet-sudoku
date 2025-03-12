@@ -53,7 +53,7 @@ class SudokuTest {
         }
 
         List<String> expectedErrorMessages = Arrays.asList("SudokuErrors[row=1, col=4, num=30]",
-                "SudokuErrors[row=2, col=6, num=7]", "SudokuErrors[row=6, col=1, num=3]," +
+                "SudokuErrors[row=2, col=6, num=7]", "SudokuErrors[row=6, col=1, num=3]",
                 " SudokuErrors[row=7, col=6, num=2]", "SudokuErrors[row=6, col=0, num=3]",
                 "SudokuErrors[row=1, col=4, num=30]", "SudokuErrors[row=2, col=5, num=7]",
                 "SudokuErrors[row=7, col=6, num=2]",
