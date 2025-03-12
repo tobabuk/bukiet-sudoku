@@ -32,8 +32,8 @@ public class Sudoku {
         return board;
     }
 
-    public List<Object[]> getErrors() {
-        List<Object[]> errorList = new ArrayList<>();
+    public List<SudokuErrors> getErrors() {
+        List<SudokuErrors> errorList = new ArrayList<>();
         errorList.addAll(checkRow());
         errorList.addAll(checkCol());
         errorList.addAll(checkBox());
@@ -42,17 +42,17 @@ public class Sudoku {
 
     //check that the row is correct
 
-    private List<Object[]> checkRow() {
-        List<Object[]> errorList = new ArrayList<>();
+    private List<SudokuErrors> checkRow() {
+        List<SudokuErrors> errorList = new ArrayList<>();
         for (int row = 0; row < 9; row++) {
             boolean[] checked = new boolean[10];
             for (int col = 0; col < 9; col++) {
                 int num = board[row][col];
                 if (num != 0) {
                     if (num < 1 || num > 9) {
-                        errorList.add(new Object[]{"Invalid number", row, col, num});
+                        errorList.add(new SudokuErrors("Invalid number", row, col, num));
                     } else if (checked[num]) {
-                        errorList.add(new Object[]{"Duplicate number", row, col, num});
+                        errorList.add(new SudokuErrors("Duplicate number", row, col, num));
 
                     } else {
                         checked[num] = true;
@@ -65,8 +65,8 @@ public class Sudoku {
     }
 
 
-    private List<Object[]> checkCol() {
-        List<Object[]> errorList = new ArrayList<>();
+    private List<SudokuErrors> checkCol() {
+        List<SudokuErrors> errorList = new ArrayList<>();
         // check that the colum is correct
         for (int col = 0; col < 9; col++) {
             boolean[] checked = new boolean[10];
@@ -74,9 +74,9 @@ public class Sudoku {
                 int num = board[row][col];
                 if (num != 0) {
                     if (num < 1 || num > 9) {
-                        errorList.add(new Object[]{"Invalid number", row, col, num});
+                        errorList.add(new SudokuErrors("Invalid number", row, col, num));
                     } else if (checked[num]) {
-                        errorList.add(new Object[]{"Duplicate number", row, col, num});
+                        errorList.add(new SudokuErrors("Duplicate number", row, col, num));
                     } else {
                         checked[num] = true;
                     }
@@ -87,8 +87,8 @@ public class Sudoku {
     }
 
 
-    private List<Object[]> checkBox() {
-        List<Object[]> errorList = new ArrayList<>();
+    private List<SudokuErrors> checkBox() {
+        List<SudokuErrors> errorList = new ArrayList<>();
         for (int boxrow = 0; boxrow < 9; boxrow += 3) {
 
             for (int boxcol = 0; boxcol < 9; boxcol += 3) {
@@ -100,9 +100,9 @@ public class Sudoku {
                         int num = board[row][col];
                         if (num != 0) {
                             if (num < 1 || num > 9) {
-                                errorList.add(new Object[]{"Invalid number", row, col, num});
+                                errorList.add(new SudokuErrors("Invalid number", row, col, num));
                             } else if (checked[num]) {
-                                errorList.add(new Object[]{"Duplicate number", row, col, num});
+                                errorList.add(new SudokuErrors("Duplicate number", row, col, num));
                             } else {
                                 checked[num] = true;
                             }

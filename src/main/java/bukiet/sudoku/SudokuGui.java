@@ -81,7 +81,7 @@ public class SudokuGui extends JFrame {
 
 
     private void sudokuErrors() {
-        List<Object[]> errors = sud.getErrors();
+        List<SudokuErrors> errors = sud.getErrors();
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
 
@@ -90,20 +90,16 @@ public class SudokuGui extends JFrame {
 
         }
 
-        for (Object[] error : errors) {
-            String errorType = (String) error[0];
-            int row = (int) error[1];
-            int col = (int) error[2];
 
-            if (errorType.equals("Invalid number")) {
-                cells[row][col].setBackground(Color.RED);
-            } else if (errorType.equals("Duplicate number")) {
-                cells[row][col].setBackground(Color.PINK);
+        for (SudokuErrors error : errors) {
+            if (error.getErrorType().equals("Invalid number")) {
+                cells[error.getRow()][error.getCol()].setBackground(Color.RED);
+            } else if (error.getErrorType().equals("Duplicate number")) {
+                cells[error.getRow()][error.getCol()].setBackground(Color.PINK);
             }
         }
-
-
     }
+
 
     public static void main(String[] args) {
         {
