@@ -50,9 +50,9 @@ public class Sudoku {
                 int num = board[row][col];
                 if (num != 0) {
                     if (num < 1 || num > 9) {
-                        errorList.add(new SudokuErrors("Invalid number", row, col, num));
+                        errorList.add(new SudokuErrors(row, col, num, "Invalid number"));
                     } else if (checked[num]) {
-                        errorList.add(new SudokuErrors("Duplicate number", row, col, num));
+                        errorList.add(new SudokuErrors(row, col, num, "Duplicate number"));
 
                     } else {
                         checked[num] = true;
@@ -74,9 +74,9 @@ public class Sudoku {
                 int num = board[row][col];
                 if (num != 0) {
                     if (num < 1 || num > 9) {
-                        errorList.add(new SudokuErrors("Invalid number", row, col, num));
+                        errorList.add(new SudokuErrors(row, col, num, "Invalid number"));
                     } else if (checked[num]) {
-                        errorList.add(new SudokuErrors("Duplicate number", row, col, num));
+                        errorList.add(new SudokuErrors(row, col, num, "Duplicate number"));
                     } else {
                         checked[num] = true;
                     }
@@ -100,9 +100,9 @@ public class Sudoku {
                         int num = board[row][col];
                         if (num != 0) {
                             if (num < 1 || num > 9) {
-                                errorList.add(new SudokuErrors("Invalid number", row, col, num));
+                                errorList.add(new SudokuErrors(row, col, num, "Invalid number"));
                             } else if (checked[num]) {
-                                errorList.add(new SudokuErrors("Duplicate number", row, col, num));
+                                errorList.add(new SudokuErrors(row, col, num, "Duplicate number"));
                             } else {
                                 checked[num] = true;
                             }
