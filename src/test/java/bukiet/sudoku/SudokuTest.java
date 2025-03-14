@@ -47,22 +47,18 @@ class SudokuTest {
         List<SudokuErrors> foundErrors = su.getErrors();
 
 
-        List<String> actualErrors = new ArrayList<>();
-        for (SudokuErrors error : foundErrors) {
-            actualErrors.add(error.toString()); // Ensure `toString()` returns a meaningful message
-        }
-
-        List<String> expectedErrorMessages = Arrays.asList("SudokuErrors[row=1, col=4, num=30]",
-                "SudokuErrors[row=2, col=6, num=7]", "SudokuErrors[row=6, col=1, num=3]",
-                " SudokuErrors[row=7, col=6, num=2]", "SudokuErrors[row=6, col=0, num=3]",
-                "SudokuErrors[row=1, col=4, num=30]", "SudokuErrors[row=2, col=5, num=7]",
-                "SudokuErrors[row=7, col=6, num=2]",
-                "SudokuErrors[row=1, col=4, num=30]", "SudokuErrors[row=2, col=5, num=7]",
-                "SudokuErrors[row=6, col=1, num=3]", "SudokuErrors[row=7, col=6, num=2]"
-);
+        List<SudokuErrors> expectedErrors = Arrays.asList(
+        new SudokuErrors(1, 4, 30, "Invalid number"),
+                new SudokuErrors(2, 6, 7, "Duplicate number"),
+                new SudokuErrors(6, 1, 3, "Duplicate number"),
+                new SudokuErrors(7, 6, 2, "Duplicate number"),
+                new SudokuErrors(6, 0, 3, "Duplicate number")
+    );
 
 
-        assertTrue(expectedErrorMessages.containsAll(actualErrors));
+        assertTrue(foundErrors.containsAll(expectedErrors));
+
+        assertTrue(foundErrors.containsAll(expectedErrors));
     }
 
 }

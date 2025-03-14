@@ -92,9 +92,9 @@ public class SudokuGui extends JFrame {
 
 
         for (SudokuErrors error : errors) {
-            if (error.equals("Invalid number")) {
+            if ("Invalid number".equals(error.type())) {
                 cells[error.row()][error.col()].setBackground(Color.RED);
-            } else if (error.equals("Duplicate number")) {
+            } else if ("Duplicate number".equals(error.type())) {
                 cells[error.row()][error.col()].setBackground(Color.PINK);
             }
         }
