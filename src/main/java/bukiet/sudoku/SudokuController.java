@@ -14,7 +14,7 @@ public class SudokuController {
         this.cells = cells;
     }
 
-    private void sudokuErrors() {
+    void sudokuErrors() {
         List<SudokuErrors> errors = sud.getErrors();
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -26,13 +26,14 @@ public class SudokuController {
 
 
         for (SudokuErrors error : errors) {
-            if (error.equals("Invalid number")) {
+            if ("Invalid number".equals(error.type())) {
                 cells[error.row()][error.col()].setBackground(Color.RED);
-            } else if (error.equals("Duplicate number")) {
+            } else if ("Duplicate number".equals(error.type())) {
                 cells[error.row()][error.col()].setBackground(Color.PINK);
             }
         }
     }
 
 }
+
 
