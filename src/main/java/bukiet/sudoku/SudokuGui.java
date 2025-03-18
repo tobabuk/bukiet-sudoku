@@ -8,6 +8,7 @@ import java.util.List;
 
 public class SudokuGui extends JFrame {
     private Sudoku sud;
+    private SudokuController controller;
     private JTextField[][] cells = new JTextField[9][9];
 
     public SudokuGui() {
@@ -21,11 +22,13 @@ public class SudokuGui extends JFrame {
                 {0, 0, 0, 4, 1, 9, 0, 0, 5},
                 {0, 0, 0, 0, 8, 0, 0, 7, 9}};
         sud = new Sudoku(emptyBoard);
+
         setTitle("Sudoku Game");
         setSize(500, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         JPanel panel = new JPanel(new GridLayout(9, 9));
         initializeBoard(panel);
+        controller = new SudokuController(sud, cells);
 
         add(panel);
     }
@@ -75,31 +78,9 @@ public class SudokuGui extends JFrame {
                 sud.getBoard()[row][col] = num;
             }
 
-            sudokuErrors();
+            controller.sudokuErrors();
         }
     }
-
-
-    private void sudokuErrors() {
-        List<SudokuErrors> errors = sud.getErrors();
-        for (int row = 0; row < 9; row++) {
-            for (int col = 0; col < 9; col++) {
-
-                cells[row][col].setBackground(Color.WHITE);
-            }
-
-        }
-
-
-        for (SudokuErrors error : errors) {
-            if (error.getErrorType().equals("Invalid number")) {
-                cells[error.getRow()][error.getCol()].setBackground(Color.RED);
-            } else if (error.getErrorType().equals("Duplicate number")) {
-                cells[error.getRow()][error.getCol()].setBackground(Color.PINK);
-            }
-        }
-    }
-
 
     public static void main(String[] args) {
         {
